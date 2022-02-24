@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.*;
 
 public class main {
     public static void main(String[] args){
@@ -8,12 +9,14 @@ public class main {
         int numPro = 0, numCont = 0, contadorProcesados = 0, contadorSkills = 0;
 
         Contributor c;
-        String name;
-        ArrayList<String> skills;
-        ArrayList<Integer> levels;
+        Project p;
+        String name = "";
+        ArrayList<String> skills = new ArrayList<>();
+        ArrayList<Integer> levels = new ArrayList<>();
+        int days = 0, score = 0, bbefore = 0;
 
 
-        if(args.size() == 1) {
+        if(args.length == 1) {
             try {
                 fde = new FileReader(args[0]);
                 entrada = new BufferedReader(fde);
@@ -54,12 +57,39 @@ public class main {
                                     }
                                 }
                             }
+                            else {
+                                //Comienza a leer un nuevo proyecto
+                                aux = linea.split(" ");
+                                if(contadorSkills == 0) {
+                                    name = aux[0];
+                                    days = Integer.parseInt(aux[1]);
+                                    score = Integer.parseInt(aux[2]);
+                                    bbefore = Integer.parseInt(aux[3]);
+                                    contadorSkills = Integer.parseInt(aux[4]);
+                                    skills = new ArrayList<String>();
+                                    levels = new ArrayList<Integer>();
+                                }
+                                else {
+                                    skills.add(aux[0]);
+                                    levels.add(Integer.parseInt(aux[1]));
+
+                                    contadorSkills--;
+
+                                    //Si ha leido la ultima skill necesaria del project
+                                    if(contadorSkills == 0) {
+                                        p = new Project(name, days, score, bbefore, skills, levels);
+                                    }
+                                }
+                            }
                         }
                     }
 
-
-                    //Muestra los contribuidores
-                    Contributor.mostrarTodos();
+                    Project.mostrarTodos();
+                    Project.reordenar();
+                    System.out.println("########################################");
+                    System.out.println("##########   REORDENADO  ###############");
+                    System.out.println("########################################");
+                    Project.mostrarTodos();
                 }
             } catch(IOException e) {
                 System.out.println("Error al leer el archivo.");

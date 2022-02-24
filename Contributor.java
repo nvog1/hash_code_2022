@@ -2,14 +2,16 @@ import java.util.*;
 
 public class Contributor {
     private String name;
-    private List<String> skills;
-    private List<Integer> levels;
-    private static List<Contributor> contributors = new L<Contributor>();
+    private ArrayList<String> skills;
+    private ArrayList<Integer> levels;
+    private boolean ocupado;
+    private static ArrayList<Contributor> contributors = new ArrayList<>();
 
     public Contributor(String n, Array<String> s, Array<Integer> l) {
         name = n;
         skills = s;
         levels = l;
+        ocupado = false;
         contributors.add(this);
     }
 
@@ -23,6 +25,14 @@ public class Contributor {
 
     public ArrayList<Integer> getLevels() {
         return levels;
+    }
+
+    public boolean getOcupado() {
+        return ocupado;
+    }
+
+    public static ArrayList<Contributor> getContributors() {
+        return contributors;
     }
 
     public static void mostrarTodos() {
