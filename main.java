@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.*;
 
 public class main {
     public static void main(String[] args){
@@ -8,12 +9,12 @@ public class main {
         int numPro = 0, numCont = 0, contadorProcesados = 0, contadorSkills = 0;
 
         Contributor c;
-        String name;
-        ArrayList<String> skills;
-        ArrayList<Integer> levels;
+        String name = "";
+        ArrayList<String> skills = new ArrayList<>();
+        ArrayList<Integer> levels = new ArrayList<>();
 
 
-        if(args.size() == 1) {
+        if(args.length == 1) {
             try {
                 fde = new FileReader(args[0]);
                 entrada = new BufferedReader(fde);
