@@ -2,9 +2,9 @@ import java.io.*;
 
 public class main {
     public static void main(String[] args){
-        public FileReader fde;
-        public BufferedReader entrada;
-        public String linea;
+        FileReader fde;
+        BufferedReader entrada;
+        String linea;
         int numPro = 0, numCont = 0, contadorProcesados = 0, contadorSkills = 0;
 
         Contributor c;
@@ -23,8 +23,8 @@ public class main {
 
                     //Almacena la cantidad de contribuidores y proyectos
                     String[] aux = linea.split(" ");
-                    numCont = aux[0];
-                    numPro = aux[1];
+                    numCont = Integer.parseInt(aux[0]);
+                    numPro = Integer.parseInt(aux[1]);
 
                     //Lee el resto del fichero
                     while(linea != null) {
@@ -34,12 +34,12 @@ public class main {
                             //Comprueba que esta leyendo contributors
                             if(contadorProcesados < numCont) {
                                 //Comienza a leer un nuevo contributor
-                                String[] aux = linea.split(" ");
+                                aux = linea.split(" ");
                                 if(contadorSkills == 0) {
                                     name = aux[0];
-                                    contadorSkills = aux[1];
-                                    skills = new ArrayList<>();
-                                    levels = new ArrayList<>();
+                                    contadorSkills = Integer.parseInt(aux[1]);
+                                    skills = new ArrayList<String>();
+                                    levels = new ArrayList<Integer>();
                                 }
                                 else {
                                     skills.add(aux[0]);
@@ -66,7 +66,7 @@ public class main {
             }
         }
         else {
-            System.out.println("Argumentos incorrectos.")
+            System.out.println("Argumentos incorrectos.");
         }
     }
 }
