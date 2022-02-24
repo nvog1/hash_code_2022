@@ -5,7 +5,12 @@ public class main {
         private FileReader fde;
         private BufferedReader entrada;
         private String linea;
-        int numPro = 0, numCont = 0, lineaAux = 0;
+        int numPro = 0, numCont = 0, lineaAux = 0, auxLeerDato = 0;
+
+        String name;
+        ArrayList<String> skills;
+        ArrayList<Integer> level;
+
 
         if(args.size() == 1) {
             try {
@@ -23,8 +28,26 @@ public class main {
                     //Lee el resto del fichero
                     while(linea != null) {
                         linea = entrada.readLine();
+
+                        //Comprueba que esta leyendo contributors
                         if(lineaAux < numCont) {
-                            
+                            //Comienza a leer un nuevo contributor
+                            if(nuevoDato) {
+                                String[] aux = linea.split(" ");
+                                name = linea[0];
+                                auxLeerDato = linea[1];
+                                nuevoDato = false;
+                            }
+                            else {
+
+                                auxLeerDato--;
+
+                                //Si ha leido la ultima skill del contributor
+                                if(auxLeerDato == 0) {
+                                    nuevoDato = true;
+                                    lineaAux++;
+                                }
+                            }
                         }
                     }
                 }
