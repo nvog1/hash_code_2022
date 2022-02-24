@@ -11,7 +11,7 @@ public class contributor {
         contributors.add(this);
     }
 
-    public static mostrarTodos() {
+    public static void mostrarTodos() {
         for(int i=0; i<contributors.size(); i++) {
             System.out.println("Contributor: " + contributors.get(i).name);
             for(int j=0; j<contributors.get(i).skills.size(); j++) {
