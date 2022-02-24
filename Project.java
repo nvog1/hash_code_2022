@@ -11,12 +11,12 @@ public class Project {
     private ArrayList<Integer> levels;
     private static ArrayList<Project> projects = new ArrayList<>();
 
-    public Project(String n, int d, int s, int b, ArrayList<String> s, ArrayList<Integer> l) {
+    public Project(String n, int d, int s, int b, ArrayList<String> sk, ArrayList<Integer> l) {
         name = n;
         days = d;
         score = s;
         bbefore = b;
-        skills = s;
+        skills = sk;
         levels = l;
         pospuesto = false;
         rechazado = false;
@@ -35,7 +35,7 @@ public class Project {
         return levels;
     }
 
-    public ArrayList<Project> getProjects() {
+    public static ArrayList<Project> getProjects() {
         return projects;
     }
 
@@ -59,41 +59,47 @@ public class Project {
         return rechazado;
     }
 
-    public void reordenar() {
+    public static void reordenar() {
         ArrayList<Project> newProjects = new ArrayList<>();
-        int minBbefore = -1, pos = -1, minScore = -1, minDays = -1;
+        int minBbefore = -1, pos = -1, maxScore = -1, minDays = -1;
 
         //Ordenar por bbefore, score, days y numRoles
         while(projects.size() > 0) {
             minBbefore = -1;
-            minScore = -1;
+            maxScore = -1;
             minDays = -1;
             pos = -1;
             for(int i=0; i<projects.size(); i++) {
                 if(pos == -1 || minBbefore > projects.get(i).getBbefore()) {
                     pos = i;
                     minBbefore = projects.get(i).getBbefore();
-                    minScore = projects.get(i).getScore();
+                    maxScore = projects.get(i).getScore();
                     minDays = projects.get(i).getDays();
                 }
-                else if(minBbefore == projects.get(i).getBbefore() && minScore > projects.get(i).getScore()) {
+                else if(minBbefore == projects.get(i).getBbefore() && 
+                        maxScore < projects.get(i).getScore()) {
                     pos = i;
                     minBbefore = projects.get(i).getBbefore();
-                    minScore = projects.get(i).getScore();
+                    maxScore = projects.get(i).getScore();
                     minDays = projects.get(i).getDays();
                 }
-                else if(minScore == projects.get(i).getScore() && minDays > projects.get(i).getDays()) {
+                else if(minBbefore == projects.get(i).getBbefore() && 
+                        maxScore == projects.get(i).getScore() && 
+                        minDays > projects.get(i).getDays()) {
                     pos = i;
                     minBbefore = projects.get(i).getBbefore();
-                    minScore = projects.get(i).getScore();
+                    maxScore = projects.get(i).getScore();
                     minDays = projects.get(i).getDays();
-                }
-                else if(minDays == projects.get(i).getDays() && projects.get(pos).getSkills().size() > projects.get(i).getSkills().size()) {
+                }/*
+                else if(minBbefore == projects.get(i).getBbefore() && 
+                        maxScore == projects.get(i).getScore() && 
+                        minDays == projects.get(i).getDays() && 
+                        projects.get(pos).getSkills().size() > projects.get(i).getSkills().size()) {
                     pos = i;
                     minBbefore = projects.get(i).getBbefore();
-                    minScore = projects.get(i).getScore();
+                    maxScore = projects.get(i).getScore();
                     minDays = projects.get(i).getDays();
-                }
+                }*/
             }
 
             if(pos != -1) {
@@ -106,8 +112,8 @@ public class Project {
     }
 
     public static void mostrarTodos() {
-        for(int i=0; i<Projects.size(); i++) {
-            System.out.println("Project: " + projects.get(i).getName() + "Bbefore/Score/Days: " + projects.get(i).getBbefore() + "/" + projects.get(i).getScore() + "/" + projects.get(i).getDays());
+        for(int i=0; i<projects.size(); i++) {
+            System.out.println("Project: " + projects.get(i).getName() + "   Bbefore/Score/Days: " + projects.get(i).getBbefore() + "/" + projects.get(i).getScore() + "/" + projects.get(i).getDays());
             for(int j=0; j<projects.get(i).getSkills().size(); j++) {
                 System.out.println("\t" + projects.get(i).getSkills().get(j) + " > " + projects.get(i).getLevels().get(j));
             }

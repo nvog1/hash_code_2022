@@ -9,10 +9,11 @@ public class main {
         int numPro = 0, numCont = 0, contadorProcesados = 0, contadorSkills = 0;
 
         Contributor c;
+        Project p;
         String name = "";
         ArrayList<String> skills = new ArrayList<>();
         ArrayList<Integer> levels = new ArrayList<>();
-        int days, score, bbefore;
+        int days = 0, score = 0, bbefore = 0;
 
 
         if(args.length == 1) {
@@ -76,12 +77,19 @@ public class main {
 
                                     //Si ha leido la ultima skill necesaria del project
                                     if(contadorSkills == 0) {
-                                        c = new Project(name, days, score, bbefore, skills, levels);
+                                        p = new Project(name, days, score, bbefore, skills, levels);
                                     }
                                 }
                             }
                         }
                     }
+
+                    Project.mostrarTodos();
+                    Project.reordenar();
+                    System.out.println("########################################");
+                    System.out.println("##########   REORDENADO  ###############");
+                    System.out.println("########################################");
+                    Project.mostrarTodos();
                 }
             } catch(IOException e) {
                 System.out.println("Error al leer el archivo.");

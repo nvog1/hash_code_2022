@@ -31,7 +31,7 @@ public class Contributor {
         return ocupado;
     }
 
-    public ArrayList<Contributor> getContributors() {
+    public static ArrayList<Contributor> getContributors() {
         return contributors;
     }
 
