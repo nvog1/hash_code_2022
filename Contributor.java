@@ -1,15 +1,13 @@
 import java.util.*;
 
-public class Contributor {
-    private String name;
+public class contributor {
     private ArrayList<String> skills;
-    private ArrayList<Integer> levels;
+    private ArrayList<Integer> level;
     private static ArrayList<contributor> contributors = new ArrayList<>();
 
-    public Contributor(String n, ArrayList<String> s, ArrayList<Integer> l) {
-        name = n;
+    public contributor(ArrayList<String> s, ArrayList<Integer> l) {
         skills = s;
-        levels = l;
+        level = l;
         contributors.add(this);
     }
 
