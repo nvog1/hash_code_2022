@@ -2,9 +2,9 @@ import java.io.*;
 
 public class main {
     public static void main(String[] args){
-        private FileReader fde;
-        private BufferedReader entrada;
-        private String linea;
+        public FileReader fde;
+        public BufferedReader entrada;
+        public String linea;
         int numPro = 0, numCont = 0, contadorProcesados = 0, contadorSkills = 0;
 
         Contributor c;
@@ -50,7 +50,7 @@ public class main {
                                     //Si ha leido la ultima skill del contributor
                                     if(contadorSkills == 0) {
                                         contadorProcesados++;
-                                        c = new Contributor(name, skills, levels)
+                                        c = new Contributor(name, skills, levels);
                                     }
                                 }
                             }

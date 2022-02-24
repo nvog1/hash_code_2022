@@ -17,7 +17,7 @@ public class Contributor {
         for(int i=0; i<contributors.size(); i++) {
             System.out.println("Contributor: " + contributors.get(i).name);
             for(int j=0; j<contributors.get(i).skills.size(); j++) {
-                System.out.println("\t" + contributors.get(i).skills.get(j) + " > " + contributors.get(i).levels.get(j))
+                System.out.println("\t" + contributors.get(i).skills.get(j) + " > " + contributors.get(i).levels.get(j));
             }
         }
     }
