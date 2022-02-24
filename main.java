@@ -5,11 +5,12 @@ public class main {
         private FileReader fde;
         private BufferedReader entrada;
         private String linea;
-        int numPro = 0, numCont = 0, lineaAux = 0, auxLeerDato = 0;
+        int numPro = 0, numCont = 0, contadorProcesados = 0, contadorSkills = 0;
 
+        Contributor c;
         String name;
         ArrayList<String> skills;
-        ArrayList<Integer> level;
+        ArrayList<Integer> levels;
 
 
         if(args.size() == 1) {
@@ -29,27 +30,36 @@ public class main {
                     while(linea != null) {
                         linea = entrada.readLine();
 
-                        //Comprueba que esta leyendo contributors
-                        if(lineaAux < numCont) {
-                            //Comienza a leer un nuevo contributor
-                            if(nuevoDato) {
+                        if(linea != null) {
+                            //Comprueba que esta leyendo contributors
+                            if(contadorProcesados < numCont) {
+                                //Comienza a leer un nuevo contributor
                                 String[] aux = linea.split(" ");
-                                name = linea[0];
-                                auxLeerDato = linea[1];
-                                nuevoDato = false;
-                            }
-                            else {
+                                if(contadorSkills == 0) {
+                                    name = aux[0];
+                                    contadorSkills = aux[1];
+                                    skills = new ArrayList<>();
+                                    levels = new ArrayList<>();
+                                }
+                                else {
+                                    skills.add(aux[0]);
+                                    levels.add(Integer.parseInt(aux[1]));
 
-                                auxLeerDato--;
+                                    contadorSkills--;
 
-                                //Si ha leido la ultima skill del contributor
-                                if(auxLeerDato == 0) {
-                                    nuevoDato = true;
-                                    lineaAux++;
+                                    //Si ha leido la ultima skill del contributor
+                                    if(contadorSkills == 0) {
+                                        contadorProcesados++;
+                                        c = new Contributor(name, skills, levels)
+                                    }
                                 }
                             }
                         }
                     }
+
+
+                    //Muestra los contribuidores
+                    Contributor.mostrarTodos();
                 }
             } catch(IOException e) {
                 System.out.println("Error al leer el archivo.");
