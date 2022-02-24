@@ -64,6 +64,51 @@ public class main {
             } catch(IOException e) {
                 System.out.println("Error al leer el archivo.");
             }
+
+            //ALGORITMO
+            Project.reordenar();
+            ArrayList<Contributor> contribuidores = Contributor.getContributors();
+            ArrayList<Project> projects = Project.getProjects();
+            String solucion = "";
+            
+            //realmente sería un while(!pospuestos.isEmpty()), pero habría que saber ver si no se va a poder realizar nunca
+            //porque no haya gente cualificada y no se pueda cualificar.
+            //asigno los proyectos
+            for(Integer i = 0; i < 3; i++){
+                Integer index = 0;
+                while(!projects.isempty()){
+                        Project actual = projects[index];
+                        projects.remove(index);
+                        if(actual.puntua()){
+                            if(realizable){
+                                //realizar
+                            }
+                            else if(falta_gente){
+                                actual.setPospuesto(true);
+                            }
+                            else{//no hay gente suficientemente cualificada
+                                if(!Project.finished()){//hacer
+                                    actual.setPospuesto(true);
+                                }
+                                else{
+                                    actual.setDescartado();
+                                }
+                            }
+                        }
+                        else{
+                            actual.setDescartado(true);//ver cómo hacer para actualizar el array estático
+                        }
+                        
+
+                        index++;
+                }
+                Project.desPosponer();
+            }
+            
+
+            
+
+
         }
         else {
             System.out.println("Argumentos incorrectos.");

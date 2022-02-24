@@ -2,11 +2,11 @@ import java.util.*;
 
 public class Contributor {
     private String name;
-    private ArrayList<String> skills;
-    private ArrayList<Integer> levels;
-    private static ArrayList<Contributor> contributors = new ArrayList<>();
+    private List<String> skills;
+    private List<Integer> levels;
+    private static List<Contributor> contributors = new L<Contributor>();
 
-    public Contributor(String n, ArrayList<String> s, ArrayList<Integer> l) {
+    public Contributor(String n, Array<String> s, Array<Integer> l) {
         name = n;
         skills = s;
         levels = l;
