@@ -4,12 +4,14 @@ public class Contributor {
     private String name;
     private ArrayList<String> skills;
     private ArrayList<Integer> levels;
+    private boolean ocupado;
     private static ArrayList<Contributor> contributors = new ArrayList<>();
 
     public Contributor(String n, ArrayList<String> s, ArrayList<Integer> l) {
         name = n;
         skills = s;
         levels = l;
+        ocupado = false;
         contributors.add(this);
     }
 
@@ -23,6 +25,10 @@ public class Contributor {
 
     public ArrayList<Integer> getLevels() {
         return levels;
+    }
+
+    public boolean getOcupado() {
+        return ocupado;
     }
 
     public ArrayList<Contributor> getContributors() {
