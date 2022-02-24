@@ -25,6 +25,10 @@ public class Contributor {
         return levels;
     }
 
+    public ArrayList<Contributor> getContributors() {
+        return contributors;
+    }
+
     public static void mostrarTodos() {
         for(int i=0; i<contributors.size(); i++) {
             System.out.println("Contributor: " + contributors.get(i).getName());

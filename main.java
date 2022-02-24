@@ -12,6 +12,7 @@ public class main {
         String name = "";
         ArrayList<String> skills = new ArrayList<>();
         ArrayList<Integer> levels = new ArrayList<>();
+        int days, score, bbefore;
 
 
         if(args.length == 1) {
@@ -55,12 +56,32 @@ public class main {
                                     }
                                 }
                             }
+                            else {
+                                //Comienza a leer un nuevo proyecto
+                                aux = linea.split(" ");
+                                if(contadorSkills == 0) {
+                                    name = aux[0];
+                                    days = Integer.parseInt(aux[1]);
+                                    score = Integer.parseInt(aux[2]);
+                                    bbefore = Integer.parseInt(aux[3]);
+                                    contadorSkills = Integer.parseInt(aux[4]);
+                                    skills = new ArrayList<String>();
+                                    levels = new ArrayList<Integer>();
+                                }
+                                else {
+                                    skills.add(aux[0]);
+                                    levels.add(Integer.parseInt(aux[1]));
+
+                                    contadorSkills--;
+
+                                    //Si ha leido la ultima skill necesaria del project
+                                    if(contadorSkills == 0) {
+                                        c = new Project(name, days, score, bbefore, skills, levels);
+                                    }
+                                }
+                            }
                         }
                     }
-
-
-                    //Muestra los contribuidores
-                    Contributor.mostrarTodos();
                 }
             } catch(IOException e) {
                 System.out.println("Error al leer el archivo.");
